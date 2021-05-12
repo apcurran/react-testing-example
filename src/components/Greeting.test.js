@@ -41,4 +41,19 @@ describe("Greeting component", () => {
     
         expect(pElement).toBeInTheDocument();
     });
+
+    test("does NOT render 'It's good' text in paragraph elem if the button was clicked", () => {
+        // Arrange
+        render(<Greeting />);
+
+        // Act
+        // Click button first...
+        const btnElem = screen.getByRole("button");
+        userEvent.click(btnElem);
+
+        // Assert
+        const pElement = screen.queryByText("It's good");
+
+        expect(pElement).toBeNull();
+    });
 });
