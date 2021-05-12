@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Greeting from "./Greeting";
 
@@ -27,15 +28,17 @@ describe("Greeting component", () => {
         expect(pElement).toBeInTheDocument();
     });
 
-    // test("renders Changed if the button WAS clicked", () => {
-    //     // Arrange
-    //     render(<Greeting />);
+    test("renders 'Changed' if the button was clicked", () => {
+        // Arrange
+        render(<Greeting />);
     
-    //     // Act
+        // Act
+        const btnElem = screen.getByRole("button");
+        userEvent.click(btnElem);
+
+        // Assert
+        const pElement = screen.getByText("Changed");
     
-    //     // Assert
-    //     const helloWorldElement = screen.getByText("Hello World");
-    
-    //     expect(helloWorldElement).toBeInTheDocument();
-    // });
+        expect(pElement).toBeInTheDocument();
+    });
 });
