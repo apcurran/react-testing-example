@@ -8,7 +8,8 @@ function Async() {
       .then((response) => response.json())
       .then((data) => {
         setPosts(data);
-      });
+      })
+      .catch(err => console.error(err));
   }, []);
 
   return (
